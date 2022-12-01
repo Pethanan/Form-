@@ -19,7 +19,26 @@ function submitFn(e)
  };
   
   let serializedUserObj = JSON.stringify(userObj);
-  localStorage.setItem(userObj.name, serializedUserObj);
-  
-     
+  localStorage.setItem(userObj.uEmail, serializedUserObj);
 }
+
+window.addEventListener("DOMContentLoaded", showUser)
+
+function showUser(e)
+{
+  e.preventDefault();
+  
+  
+ 
+  Object.keys(localStorage).forEach((key) => 
+                                    {
+    let strngDetails = localStorage.getItem(key);
+    let detailsOfUser = JSON.parse(strngDetails);
+    
+    let userOnScreen = document.createElement("p");
+    userOnScreen.appendChild(document.createTextNode(`${key.name}  ${key.phone} ${key.emailId}`));
+                            
+  document.querySelector("div").appendChild(userOnScreen);   
+    });
+}
+
